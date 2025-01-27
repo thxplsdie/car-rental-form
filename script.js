@@ -1,352 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // First, inject the HTML content
-    document.getElementById('rental-form').innerHTML = `
-        <h2>Request quote</h2>
-        
-        <div class="progress-text">
-            <span id="progress-percentage">25% Complete</span>
-        </div>
-
-        <div class="step-indicator">
-            <div class="step-dot active" data-step="1"></div>
-            <div class="step-dot" data-step="2"></div>
-            <div class="step-dot" data-step="3"></div>
-            <div class="step-dot" data-step="4"></div>
-        </div>
-
-        <form id="bookingForm" action="https://formsubmit.co/thxplsdie@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="New Car Rental Booking">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://www.google.com">
-            <input type="hidden" name="_captcha" value="false">
-
-            <!-- Step 1: Vehicle Selection -->
-            <div class="form-step active" data-step="1">
-                <h3 class="step-title">Select Your Vehicle</h3>
-                <div class="car-options">
-                    <div class="car-option">
-                        <input type="radio" id="small" name="carType" value="SMALL" required>
-                        <label for="small" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Small Car">
-                            <div class="car-info">
-                                <h4>SMALL</h4>
-                                <p>Toyota Yaris or similar</p>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="car-option">
-                        <input type="radio" id="compact" name="carType" value="COMPACT" required>
-                        <label for="compact" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Compact Car">
-                            <div class="car-info">
-                                <h4>COMPACT</h4>
-                                <p>Toyota Corolla or similar</p>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="car-option">
-                        <input type="radio" id="standard" name="carType" value="STANDARD" required>
-                        <label for="standard" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Standard Car">
-                            <div class="car-info">
-                                <h4>STANDARD</h4>
-                                <p>Toyota Camry or similar</p>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="car-option">
-                        <input type="radio" id="suv" name="carType" value="SUV" required>
-                        <label for="suv" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="SUV">
-                            <div class="car-info">
-                                <h4>SUV</h4>
-                                <p>Toyota RAV4 or similar</p>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="car-option">
-                        <input type="radio" id="van" name="carType" value="9 SEATER" required>
-                        <label for="van" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="9 Seater Van">
-                            <div class="car-info">
-                                <h4>9 SEATER</h4>
-                                <p>Toyota Hiace or similar</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group transmission-select">
-                    <label for="transmission">Transmission Type:</label>
-                    <select id="transmission" name="transmission" required>
-                        <option value="">Select transmission</option>
-                        <option value="AUTOMATIC">AUTOMATIC</option>
-                        <option value="MANUAL">MANUAL</option>
-                    </select>
-                </div>
-                <div class="form-navigation">
-                    <button type="button" class="btn-next">Continue</button>
-                </div>
-            </div>
-
-            <!-- Step 2: Rental Details -->
-            <div class="form-step" data-step="2">
-                <h3 class="step-title">Rental Details</h3>
-                <div class="form-columns">
-                    <div class="form-column">
-                        <!-- Pickup Location -->
-                        <div class="form-group">
-                            <label for="pickupLocation">Pickup Location:</label>
-                            <select id="pickupLocation" name="pickupLocation" required>
-                                <option value="">Select pickup location</option>
-                                <option value="Dublin Airport">Dublin Airport</option>
-                                <option value="Dublin City (St. Stephen's Green)">Dublin City (St. Stephen's Green)</option>
-                                <!-- Add all your locations here -->
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="pickupDate">Pickup Date:</label>
-                            <input type="date" id="pickupDate" name="pickupDate" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="pickupTime">Pickup Time:</label>
-                            <select id="pickupTime" name="pickupTime" required>
-                                <option value="">Select pickup time</option>
-                            </select>
-                        </div>
-
-                        <!-- Add other pickup details -->
-                    </div>
-
-                    <div class="form-column">
-                        <!-- Return Location -->
-                        <div class="form-group">
-                            <label for="returnLocation">Return Location:</label>
-                            <select id="returnLocation" name="returnLocation" required>
-                                <option value="">Select return location</option>
-                                <option value="Dublin Airport">Dublin Airport</option>
-                                <option value="Dublin City (St. Stephen's Green)">Dublin City (St. Stephen's Green)</option>
-                                <!-- Add all your locations here -->
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="returnDate">Return Date:</label>
-                            <input type="date" id="returnDate" name="returnDate" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="returnTime">Return Time:</label>
-                            <select id="returnTime" name="returnTime" required>
-                                <option value="">Select return time</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-navigation">
-                    <button type="button" class="btn-prev">Previous</button>
-                    <button type="button" class="btn-next">Continue</button>
-                </div>
-            </div>
-
-            <!-- Add Step 3 and 4 HTML here -->
-        </form>
-    `;
-
-    // Your existing JavaScript code starts here
     const form = document.getElementById('bookingForm');
     const steps = form.querySelectorAll('.form-step');
     const dots = document.querySelectorAll('.step-dot');
     let currentStep = 1;
 
-    // Rest of your existing JavaScript...
-});
-
-    // Add Steps 3 and 4 to the HTML string (after Step 2)
-    `
-            <!-- Step 3: Personal Information -->
-            <div class="form-step" data-step="3">
-                <h3 class="step-title">Your Details</h3>
-                <div class="form-group">
-                    <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                </div>
-
-                <div class="form-group phone-group">
-                    <label for="phone">Phone Number:</label>
-                    <div class="phone-input-container">
-                        <select id="countryCode" name="countryCode" required>
-                            <option value="">Select country code</option>
-                            <option value="+353">Ireland (+353)</option>
-                            <option value="+1">USA/Canada (+1)</option>
-                            <option value="+44">UK (+44)</option>
-                            <!-- Add all country codes here -->
-                        </select>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="zipCode">Zip/Postal Code:</label>
-                    <input type="text" id="zipCode" name="zipCode" required placeholder="Enter your zip/postal code">
-                </div>
-
-                <div class="form-group">
-                    <label for="firstVisit">Is this your first visit to Ireland?</label>
-                    <select id="firstVisit" name="firstVisit" required>
-                        <option value="">Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="occasion">Is this a special occasion trip? (Optional)</label>
-                    <select id="occasion" name="occasion">
-                        <option value="">Select if applicable</option>
-                        <option value="Birthday">Birthday</option>
-                        <option value="Anniversary">Anniversary</option>
-                        <option value="Engagement">Engagement</option>
-                        <option value="Wedding">Wedding</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="referral">How did you hear about us?</label>
-                    <select id="referral" name="referral" required>
-                        <option value="">Select</option>
-                        <option value="Returning">Returning Customer</option>
-                        <option value="Cousin">Cousin</option>
-                        <option value="Friend">Friend</option>
-                        <option value="Google">Google</option>
-                        <option value="TripAdvisor">TripAdvisor</option>
-                        <option value="Facebook Advertising">Facebook Advertising</option>
-                        <option value="Irish Central">Irish Central</option>
-                        <option value="Facebook Travel Groups">Facebook Travel Groups</option>
-                        <option value="TikTok">TikTok</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Pinterest">Pinterest</option>
-                        <option value="Home to Mayo">Home to Mayo</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="questions">Have you any particular questions or queries we can help you with? (Optional)</label>
-                    <textarea id="questions" name="questions" rows="4" placeholder="Enter your questions here"></textarea>
-                </div>
-
-                <div class="form-navigation">
-                    <button type="button" class="btn-prev">Previous</button>
-                    <button type="button" class="btn-next">Continue</button>
-                </div>
-            </div>
-
-            <!-- Step 4: Summary -->
-            <div class="form-step" data-step="4">
-                <h3 class="step-title">Review Your Booking</h3>
-                
-                <div class="summary-section">
-                    <h4>Selected Vehicle <span class="edit-step" data-goto="1">Edit</span></h4>
-                    <div class="summary-item">
-                        <span class="summary-label">Vehicle Type:</span>
-                        <span class="summary-value" id="summary-car-type">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Transmission:</span>
-                        <span class="summary-value" id="summary-transmission">-</span>
-                    </div>
-                </div>
-
-                <!-- Add the rest of the summary sections -->
-            </div>
-    `;
-    // Continue the summary sections in Step 4
-    `
-                <div class="summary-section">
-                    <h4>Rental Details <span class="edit-step" data-goto="2">Edit</span></h4>
-                    <div class="summary-item">
-                        <span class="summary-label">Pickup Location:</span>
-                        <span class="summary-value" id="summary-pickup-location">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Pickup Date & Time:</span>
-                        <span class="summary-value" id="summary-pickup-datetime">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Return Location:</span>
-                        <span class="summary-value" id="summary-return-location">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Return Date & Time:</span>
-                        <span class="summary-value" id="summary-return-datetime">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Number of Passengers:</span>
-                        <span class="summary-value" id="summary-passengers">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Age Verification:</span>
-                        <span class="summary-value" id="summary-age">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">International Travel:</span>
-                        <span class="summary-value" id="summary-international">-</span>
-                    </div>
-                </div>
-
-                <div class="summary-section">
-                    <h4>Personal Details <span class="edit-step" data-goto="3">Edit</span></h4>
-                    <div class="summary-item">
-                        <span class="summary-label">Full Name:</span>
-                        <span class="summary-value" id="summary-name">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Email:</span>
-                        <span class="summary-value" id="summary-email">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Phone:</span>
-                        <span class="summary-value" id="summary-phone">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">First Visit to Ireland:</span>
-                        <span class="summary-value" id="summary-first-visit">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Special Occasion:</span>
-                        <span class="summary-value" id="summary-occasion">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Referral Source:</span>
-                        <span class="summary-value" id="summary-referral">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Questions/Comments:</span>
-                        <span class="summary-value" id="summary-questions">-</span>
-                    </div>
-                </div>
-
-                <div class="form-navigation">
-                    <button type="button" class="btn-prev">Previous</button>
-                    <button type="submit">Send Inquiry</button>
-                </div>
-            </div>
-        </form>
-    `;
-
-    // Now add all the JavaScript functionality
+    // Generate time options for pickup and return time selects
     function generateTimeOptions() {
         const timeSelects = [document.getElementById('pickupTime'), document.getElementById('returnTime')];
         
@@ -438,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const returnTime = document.getElementById('returnTime').value;
         document.getElementById('summary-return-datetime').textContent = `${returnDate} ${returnTime}`;
 
+        // New rental details
         document.getElementById('summary-passengers').textContent = document.getElementById('passengers').value;
         document.getElementById('summary-age').textContent = document.getElementById('age').value;
         document.getElementById('summary-international').textContent = document.getElementById('international').value;
@@ -447,23 +106,49 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('summary-email').textContent = document.getElementById('email').value;
         document.getElementById('summary-phone').textContent = 
             `${document.getElementById('countryCode').value} ${document.getElementById('phone').value}`;
+
+        // New personal details
         document.getElementById('summary-first-visit').textContent = document.getElementById('firstVisit').value;
         document.getElementById('summary-occasion').textContent = document.getElementById('occasion').value || 'N/A';
         document.getElementById('summary-referral').textContent = document.getElementById('referral').value;
-        document.getElementById('summary-questions').textContent = document.getElementById('questions').value || 'N/A';
+        document.getElementById('summary-questions').textContent = document.getElementById('questions').value || 'None';
     }
 
     function validateStep(step) {
-        const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+        const currentStepElement = form.querySelector(`.form-step[data-step="${step}"]`);
         const requiredFields = currentStepElement.querySelectorAll('[required]');
-        
         let isValid = true;
+
+        // Clear all previous errors
+        currentStepElement.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+        // Special validation for car selection on step 1
+        if (step === 1) {
+            const carSelected = document.querySelector('input[name="carType"]:checked');
+            if (!carSelected) {
+                alert('Please select a vehicle');
+                document.querySelectorAll('.car-option').forEach(option => {
+                    option.classList.add('error');
+                });
+                return false;
+            }
+        }
+
+        // Special validation for age requirement on step 2
+        if (step === 2) {
+            const ageVerification = document.getElementById('age').value;
+            if (ageVerification === 'no') {
+                alert('You must be over 25 years old to rent a vehicle');
+                document.getElementById('age').classList.add('error');
+                return false;
+            }
+        }
+
+        // Check all required fields
         requiredFields.forEach(field => {
-            field.classList.remove('error');
-            
             if (!field.value) {
-                field.classList.add('error');
                 isValid = false;
+                field.classList.add('error');
             }
         });
 
@@ -497,6 +182,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please enter a valid email address');
                 document.getElementById('email').classList.add('error');
                 return false;
+            }
+
+            // Validate zip/postal code
+            const zipCode = document.getElementById('zipCode').value;
+            if (!/^[a-zA-Z0-9\s-]{4,10}$/.test(zipCode)) {
+                alert('Please enter a valid zip/postal code');
+                document.getElementById('zipCode').classList.add('error');
+                return false;
+            }
+
+            // Validate required dropdowns
+            const requiredDropdowns = ['firstVisit', 'referral'];
+            for (const id of requiredDropdowns) {
+                const element = document.getElementById(id);
+                if (!element.value) {
+                    alert(`Please select an option for ${element.previousElementSibling.textContent}`);
+                    element.classList.add('error');
+                    return false;
+                }
             }
         }
 
@@ -547,19 +251,68 @@ document.addEventListener('DOMContentLoaded', function() {
         // Combine country code and phone number
         const countryCode = document.getElementById('countryCode').value;
         const phoneNumber = document.getElementById('phone').value;
-        const fullPhone = document.createElement('input');
-        fullPhone.type = 'hidden';
-        fullPhone.name = 'phone';
-        fullPhone.value = countryCode + phoneNumber;
+        const fullPhone = countryCode + phoneNumber;
         
-        // Remove the original phone fields from form submission
-        document.getElementById('phone').removeAttribute('name');
-        document.getElementById('countryCode').removeAttribute('name');
-        
-        // Add the combined phone field
-        form.appendChild(fullPhone);
-        
-        // Submit the form
-        form.submit();
+        // Prepare data for both FormSubmit and Zapier
+        const formData = {
+            carType: document.querySelector('input[name="carType"]:checked').value,
+            transmission: document.getElementById('transmission').value,
+            pickupLocation: document.getElementById('pickupLocation').value,
+            pickupDate: document.getElementById('pickupDate').value,
+            pickupTime: document.getElementById('pickupTime').value,
+            returnLocation: document.getElementById('returnLocation').value,
+            returnDate: document.getElementById('returnDate').value,
+            returnTime: document.getElementById('returnTime').value,
+            passengers: document.getElementById('passengers').value,
+            age: document.getElementById('age').value,
+            international: document.getElementById('international').value,
+            fullName: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: fullPhone,
+            zipCode: document.getElementById('zipCode').value,
+            firstVisit: document.getElementById('firstVisit').value,
+            occasion: document.getElementById('occasion').value || 'N/A',
+            referral: document.getElementById('referral').value,
+            questions: document.getElementById('questions').value || 'None'
+        };
+
+        // Debug log
+        console.log('Sending to Zapier:', formData);
+
+        // Send to Zapier webhook
+        fetch('https://hooks.zapier.com/hooks/catch/9405168/2ftxhhl/', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors'
+        }).then(response => {
+            console.log('Zapier submission attempted');
+            // Continue with email submission
+            const hiddenPhone = document.createElement('input');
+            hiddenPhone.type = 'hidden';
+            hiddenPhone.name = 'phone';
+            hiddenPhone.value = fullPhone;
+            
+            document.getElementById('phone').removeAttribute('name');
+            document.getElementById('countryCode').removeAttribute('name');
+            
+            form.appendChild(hiddenPhone);
+            form.submit();
+        }).catch(error => {
+            console.error('Error sending to Zapier:', error.message);
+            // Still submit the form to email even if Zapier fails
+            const hiddenPhone = document.createElement('input');
+            hiddenPhone.type = 'hidden';
+            hiddenPhone.name = 'phone';
+            hiddenPhone.value = fullPhone;
+            
+            document.getElementById('phone').removeAttribute('name');
+            document.getElementById('countryCode').removeAttribute('name');
+            
+            form.appendChild(hiddenPhone);
+            form.submit();
+        });
     });
-});
+}); 
