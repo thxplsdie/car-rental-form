@@ -378,3 +378,56 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         }
     });
 });
+
+// Add this to your existing script.js (keep all other existing code)
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+    
+    // Disable submit button and show loading state
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+    }
+
+    fetch('https://formsubmit.co/thxplsdie@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Try all possible redirect methods
+            try {
+                // Method 1: Parent frame redirect
+                window.parent.location.href = 'https://www.google.com';
+            } catch (e) {
+                try {
+                    // Method 2: Top frame redirect
+                    window.top.location.href = 'https://www.google.com';
+                } catch (e2) {
+                    // Method 3: Direct location change
+                    window.location.href = 'https://www.google.com';
+                }
+            }
+        } else {
+            throw new Error('Form submission failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting the form. Please try again.');
+    })
+    .finally(() => {
+        // Re-enable submit button
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Request';
+        }
+    });
+});
