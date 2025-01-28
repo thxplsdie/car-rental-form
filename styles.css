@@ -17,28 +17,29 @@
 
 .booking-container {
     background-color: white;
-    padding: 32px;
-    border-radius: 12px;
+    padding: 24px;
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 680px;
+    max-width: 580px;
     margin: 0 auto;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     position: relative;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     color: var(--text-dark);
     font-weight: 700;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .progress-text {
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    margin-top: 16px;
     color: var(--text-gray);
     font-size: 14px;
 }
@@ -49,7 +50,7 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 /* Form elements */
@@ -57,23 +58,24 @@ h2 {
     display: block;
     color: var(--text-dark);
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 0.875rem; /* 14px */
 }
 
 select, input, textarea {
     width: 100%;
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 3px;
+    font-size: 14px;
     color: var(--text-dark);
     background-color: white;
-    height: 48px;
-    padding: 12px 20px;
+    height: 40px;
+    padding: 10px 24px;
 }
 
 textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 80px;
     height: auto;
     line-height: 1.5;
     padding: 16px 20px;
@@ -92,7 +94,7 @@ input[type="date"] {
     appearance: none;
     color: #333;
     padding-left: 16px;
-    padding-right: 44px;
+    padding-right: 16px;
     background-color: white;
     cursor: pointer;
     position: relative;
@@ -103,9 +105,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(48%) sepia(0%) saturate(1926%) hue-rotate(86deg) brightness(94%) contrast(90%);
     opacity: 1;
     margin: 0;
-    padding: 0;
+    padding-right: 4px;
     width: 20px;
     height: 20px;
+    position: absolute;
+    right: 8px;
 }
 
 ::-webkit-datetime-edit-fields-wrapper { 
@@ -122,7 +126,7 @@ input[type="date"]::-webkit-datetime-edit {
 /* Firefox specific styles */
 input[type="date"]::-moz-calendar-picker-indicator {
     position: absolute;
-    right: 16px;
+    right: 8px;
     width: 20px;
     height: 20px;
 }
@@ -134,7 +138,7 @@ button {
     background-color: var(--primary-green);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 3px;
     cursor: pointer;
     font-size: 16px;
     display: block;
@@ -165,8 +169,8 @@ button:hover {
 .form-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 24px;
+    gap: 32px;
+    margin-bottom: 16px;
 }
 
 .form-column + .form-column {
@@ -178,7 +182,7 @@ button:hover {
 .step-indicator {
     display: flex;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .step-dot {
@@ -239,17 +243,17 @@ button:hover {
 }
 
 .step-title {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     color: #333;
 }
 
 /* Car Selection Styles */
 .car-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     margin-bottom: 24px;
 }
 
@@ -264,46 +268,65 @@ button:hover {
 .car-label {
     display: block;
     cursor: pointer;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
     transition: all 0.3s ease;
-    background-color: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fdfb 100%);
 }
 
 .car-label:hover {
     border-color: var(--primary-green);
+    background: linear-gradient(135deg, #ffffff 0%, #f0faf6 100%);
+    box-shadow: 0 2px 8px rgba(49, 199, 126, 0.05);
 }
 
 .car-option input[type="radio"]:checked + .car-label {
     border-color: var(--primary-green);
-    background-color: #F6FEF9;
+    background: linear-gradient(135deg, #ffffff 0%, #e8f7f1 100%);
+    box-shadow: 0 2px 12px rgba(49, 199, 126, 0.08);
 }
 
 .car-label img {
     width: 100%;
-    height: 120px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    margin-bottom: 12px;
+    height: 140px;
+    background-color: transparent;
+    border-radius: 3px;
+    object-fit: contain;
 }
 
 .car-info {
     text-align: center;
-    padding: 8px 0;
+    padding: 12px;
+    background: white;
 }
 
 .car-info h4 {
     color: #333;
     margin-bottom: 4px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .car-info p {
     color: #666;
-    font-size: 14px;
+    font-size: 12px;
     margin: 0;
+    margin-bottom: 4px;
+}
+
+.car-details {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.car-details span {
+    white-space: nowrap;
+    opacity: 0.8;
 }
 
 /* Error Styles */
@@ -318,8 +341,8 @@ button:hover {
 /* Summary Step Styles */
 .summary-section {
     background: var(--background-light);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 3px;
+    padding: 16px;
     margin-bottom: 16px;
 }
 
@@ -359,18 +382,22 @@ button:hover {
 .form-navigation {
     display: flex;
     justify-content: space-between;
-    margin-top: 32px;
+    margin-top: 20px;
     gap: 20px;
 }
 
 .form-navigation button {
     flex: 1;
-    padding: 16px 24px;
-    font-size: 16px;
+    padding: 0 20px;
+    font-size: 14px;
     font-weight: 500;
-    border-radius: 12px;
+    border-radius: 3px;
     transition: background-color 0.3s ease;
-    height: 48px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
 }
 
 /* Previous button */
@@ -399,7 +426,7 @@ button[type="submit"]:hover {
 }
 
 .form-step[data-step="1"] .form-navigation button {
-    max-width: 200px;
+    width: 120px;
 }
 
 @media screen and (max-width: 768px) {
@@ -413,8 +440,7 @@ button[type="submit"]:hover {
     }
 
     .car-options {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .form-columns {
@@ -441,6 +467,10 @@ button[type="submit"]:hover {
         width: calc(100% - 32px);
         padding: 16px;
     }
+
+    .car-options {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -450,7 +480,7 @@ button[type="submit"]:hover {
     }
 
     .car-label img {
-        height: 100px;
+        height: 140px;
     }
 
     .form-navigation button {
@@ -468,7 +498,7 @@ input[type="number"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 3px;
     font-size: 16px;
 }
 
@@ -515,12 +545,13 @@ select option[value=""] {
 input::placeholder,
 textarea::placeholder {
     color: var(--text-gray);
+    padding-left: 0;
 }
 
 /* Dropdown options padding */
 select option {
-    padding: 12px 16px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 14px;
 }
 
 /* Input specific styles */
@@ -528,13 +559,22 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="number"],
-input[type="date"] {
-    padding-left: 16px;
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    font-size: 14px;
+    color: var(--text-dark);
+    background-color: white;
+    height: 40px;
+    padding: 10px 24px;
 }
 
 /* Selected option spacing */
 select:not([value=""]) {
-    padding-left: 16px;
+    padding-left: 24px;
 }
 
 /* Update media queries */
@@ -559,7 +599,7 @@ select:not([value=""]) {
     }
 
     .car-options {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 12px;
     }
 
@@ -578,7 +618,7 @@ select:not([value=""]) {
     }
 
     .car-label img {
-        height: 120px;
+        height: 100px;
         object-fit: cover;
     }
 
@@ -602,7 +642,7 @@ select:not([value=""]) {
     }
 
     .car-label img {
-        height: 100px;
+        height: 140px;
     }
 
     .form-navigation button {
@@ -612,5 +652,61 @@ select:not([value=""]) {
 
     .step-title {
         margin-bottom: 20px;
+    }
+}
+
+/* Update media queries for better tablet/iPad support */
+@media (min-width: 1024px) {
+    .car-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .car-label img {
+        height: 110px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .car-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .car-label img {
+        height: 160px;
+    }
+
+    .booking-container {
+        max-width: 720px;
+        padding: 32px;
+    }
+}
+
+/* Existing mobile styles */
+@media (max-width: 767px) {
+    .car-options {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .car-label img {
+        height: 180px;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 480px) {
+    .car-options {
+        grid-template-columns: 1fr;
+    }
+
+    .car-label img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 375px) {
+    .car-label img {
+        height: 140px;
     }
 } 
