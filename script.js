@@ -88,13 +88,25 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('summary-pickup-location').textContent = document.getElementById('pickupLocation').value;
         document.getElementById('summary-return-location').textContent = document.getElementById('returnLocation').value;
         
-        const pickupDate = document.getElementById('pickupDate').value;
-        const pickupTime = document.getElementById('pickupTime').value;
-        document.getElementById('summary-pickup-datetime').textContent = `${pickupDate} ${pickupTime}`;
-        
-        const returnDate = document.getElementById('returnDate').value;
-        const returnTime = document.getElementById('returnTime').value;
-        document.getElementById('summary-return-datetime').textContent = `${returnDate} ${returnTime}`;
+        // Format pickup datetime
+        const pickupTime = document.getElementById('pickupTime').value; // This is in 24h format
+        const pickupTimeDisplay = new Date(`2000/01/01 ${pickupTime}`).toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+        document.getElementById('summary-pickup-datetime').textContent = 
+            `${document.getElementById('pickupDate').value} ${pickupTimeDisplay}`;
+
+        // Format return datetime
+        const returnTime = document.getElementById('returnTime').value; // This is in 24h format
+        const returnTimeDisplay = new Date(`2000/01/01 ${returnTime}`).toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+        document.getElementById('summary-return-datetime').textContent = 
+            `${document.getElementById('returnDate').value} ${returnTimeDisplay}`;
 
         // New rental details
         document.getElementById('summary-passengers').textContent = document.getElementById('passengers').value;
@@ -259,10 +271,18 @@ document.addEventListener('DOMContentLoaded', function() {
             transmission: document.getElementById('transmission').value,
             pickupLocation: document.getElementById('pickupLocation').value,
             pickupDate: document.getElementById('pickupDate').value,
-            pickupTime: document.getElementById('pickupTime').value,
+            pickupTime: new Date(`2000/01/01 ${document.getElementById('pickupTime').value}`).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            }),
             returnLocation: document.getElementById('returnLocation').value,
             returnDate: document.getElementById('returnDate').value,
-            returnTime: document.getElementById('returnTime').value,
+            returnTime: new Date(`2000/01/01 ${document.getElementById('returnTime').value}`).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            }),
             passengers: document.getElementById('passengers').value,
             age: document.getElementById('age').value,
             international: document.getElementById('international').value,
