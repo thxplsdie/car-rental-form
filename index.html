@@ -69,10 +69,14 @@
                     <div class="car-option">
                         <input type="radio" id="small" name="carType" value="SMALL" required>
                         <label for="small" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Small Car">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc3d2fe36af906f0549_SMALL.jpg" alt="Small Car">
                             <div class="car-info">
                                 <h4>SMALL</h4>
-                                <p>Toyota Yaris or similar</p>
+                                <p>Ford Fiesta or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 3</span>
+                                    <span>BAGS: 2</span>
+                                </div>
                             </div>
                         </label>
                     </div>
@@ -80,10 +84,14 @@
                     <div class="car-option">
                         <input type="radio" id="compact" name="carType" value="COMPACT" required>
                         <label for="compact" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Compact Car">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc3ba6f58e11f455a7d_COMPACT.jpg" alt="Compact Car">
                             <div class="car-info">
                                 <h4>COMPACT</h4>
-                                <p>Toyota Corolla or similar</p>
+                                <p>Opel Astra or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 5</span>
+                                    <span>BAGS: 2</span>
+                                </div>
                             </div>
                         </label>
                     </div>
@@ -91,10 +99,14 @@
                     <div class="car-option">
                         <input type="radio" id="standard" name="carType" value="STANDARD" required>
                         <label for="standard" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="Standard Car">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc3f687a1058055db67_STANDARD.jpg" alt="Standard Car">
                             <div class="car-info">
                                 <h4>STANDARD</h4>
-                                <p>Toyota Camry or similar</p>
+                                <p>Skoda Octavia or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 5</span>
+                                    <span>BAGS: 3</span>
+                                </div>
                             </div>
                         </label>
                     </div>
@@ -102,10 +114,14 @@
                     <div class="car-option">
                         <input type="radio" id="suv" name="carType" value="SUV" required>
                         <label for="suv" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="SUV">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc32e46e90c32971627_SUV.jpg" alt="SUV">
                             <div class="car-info">
                                 <h4>SUV</h4>
-                                <p>Toyota RAV4 or similar</p>
+                                <p>Peugeot 5008 or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 5</span>
+                                    <span>BAGS: 4</span>
+                                </div>
                             </div>
                         </label>
                     </div>
@@ -113,10 +129,14 @@
                     <div class="car-option">
                         <input type="radio" id="van" name="carType" value="9 SEATER" required>
                         <label for="van" class="car-label">
-                            <img src="https://placehold.co/300x120" alt="9 Seater Van">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc38509303386a68c6c_9%20SEATER.jpg" alt="9 Seater">
                             <div class="car-info">
                                 <h4>9 SEATER</h4>
-                                <p>Toyota Hiace or similar</p>
+                                <p>Opel Vivaro or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 9</span>
+                                    <span>BAGS: 8</span>
+                                </div>
                             </div>
                         </label>
                     </div>
@@ -471,25 +491,23 @@
                     <label for="referral">How did you hear about us?</label>
                     <select id="referral" name="referral" required>
                         <option value="">Select</option>
-                        <option value="Returning">Returning Customer</option>
-                        <option value="Cousin">Cousin</option>
+                        <option value="I am a returning Cousin">I am a returning Cousin</option>
                         <option value="Friend">Friend</option>
                         <option value="Google">Google</option>
-                        <option value="TripAdvisor">TripAdvisor</option>
                         <option value="Facebook Advertising">Facebook Advertising</option>
-                        <option value="Irish Central">Irish Central</option>
-                        <option value="Facebook Travel Groups">Facebook Travel Groups</option>
-                        <option value="TikTok">TikTok</option>
-                        <option value="Instagram">Instagram</option>
+                        <option value="TripAdvisor">TripAdvisor</option>
                         <option value="Pinterest">Pinterest</option>
-                        <option value="Home to Mayo">Home to Mayo</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Facebook Travel Groups">Facebook Travel Groups</option>
+                        <option value="Irish Central">Irish Central</option>
+                        <option value="Instagram">Instagram</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="questions">Have you any particular questions or queries we can help you with? (Optional)</label>
-                    <textarea id="questions" name="questions" rows="4" placeholder="Enter your questions here"></textarea>
+                    <textarea id="questions" name="questions" rows="4"></textarea>
                 </div>
 
                 <div class="form-navigation">
@@ -500,7 +518,7 @@
 
             <!-- Step 4: Summary -->
             <div class="form-step" data-step="4">
-                <h3 class="step-title">Review Your Booking</h3>
+                <h3 class="step-title">Review Your Information</h3>
                 
                 <div class="summary-section">
                     <h4>Selected Vehicle <span class="edit-step" data-goto="1">Edit</span></h4>
