@@ -10,7 +10,7 @@
 <body>
     <div class="booking-container">
         <h2>Request Quote</h2>
-        
+
         <div class="progress-text">
             <span id="progress-percentage">25% Complete</span>
         </div>
@@ -25,7 +25,7 @@
         <form id="bookingForm" action="https://formsubmit.co/thxplsdie@gmail.com" method="POST" target="_top">
             <input type="hidden" name="_subject" value="New Car Rental Booking">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://www.google.com"> <!-- Redirects to Google after submit -->
+            <input type="hidden" name="_next" value="https://www.google.com"> <!-- Redirect after submit -->
             <input type="hidden" name="_captcha" value="false">
 
             <!-- Step 1: Vehicle Selection -->
@@ -76,6 +76,36 @@
                             </div>
                         </label>
                     </div>
+
+                    <div class="car-option">
+                        <input type="radio" id="suv" name="carType" value="SUV" required>
+                        <label for="suv" class="car-label">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc32e46e90c32971627_SUV.jpg" alt="SUV">
+                            <div class="car-info">
+                                <h4>SUV</h4>
+                                <p>Peugeot 5008 or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 5</span>
+                                    <span>BAGS: 4</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="car-option">
+                        <input type="radio" id="van" name="carType" value="9 SEATER" required>
+                        <label for="van" class="car-label">
+                            <img src="https://cdn.prod.website-files.com/678750f97194ea7f76b8f929/6798ecc38509303386a68c6c_9%20SEATER.jpg" alt="9 Seater">
+                            <div class="car-info">
+                                <h4>9 SEATER</h4>
+                                <p>Opel Vivaro or Similar</p>
+                                <div class="car-details">
+                                    <span>PASSENGERS: 9</span>
+                                    <span>BAGS: 8</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group transmission-select">
@@ -86,6 +116,7 @@
                         <option value="MANUAL">MANUAL</option>
                     </select>
                 </div>
+
                 <div class="form-navigation">
                     <button type="button" class="btn-next">Continue</button>
                 </div>
@@ -102,6 +133,8 @@
             </div>
         </form>
     </div>
+
+    <script src="script.js"></script>
 
     <script>
         // Ensure form submission redirects properly even if inside an iframe
