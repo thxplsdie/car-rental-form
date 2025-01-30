@@ -264,41 +264,56 @@ document.addEventListener('DOMContentLoaded', function() {
         const countryCode = document.getElementById('countryCode').value;
         const phoneNumber = document.getElementById('phone').value;
         const fullPhone = countryCode + phoneNumber;
-        
-        // Prepare form data
-        const formData = new FormData(form);
-        formData.set('phone', fullPhone); // Update phone with combined value
 
+        // Format times to AM/PM
+        const formatTime = (time) => {
+            const [hours, minutes] = time.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const hour12 = hour % 12 || 12;
+            return `${hour12}:${minutes} ${ampm}`;
+        };
+        
         // Show loading state
         const submitButton = form.querySelector('button[type="submit"]');
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
 
-        // Send to both email handler and Zapier
-        Promise.all([
-            // Send to our email handler
-            fetch('send-email.php', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json()),
+        // Prepare data for Zapier
+        const formData = {
+            carType: document.querySelector('input[name="carType"]:checked').value,
+            transmission: document.getElementById('transmission').value,
+            pickupLocation: document.getElementById('pickupLocation').value,
+            pickupDate: document.getElementById('pickupDate').value,
+            pickupTime: formatTime(document.getElementById('pickupTime').value),
+            returnLocation: document.getElementById('returnLocation').value,
+            returnDate: document.getElementById('returnDate').value,
+            returnTime: formatTime(document.getElementById('returnTime').value),
+            passengers: document.getElementById('passengers').value,
+            age: document.getElementById('age').value,
+            international: document.getElementById('international').value,
+            fullName: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: fullPhone,
+            zipCode: document.getElementById('zipCode').value,
+            firstVisit: document.getElementById('firstVisit').value,
+            occasion: document.getElementById('occasion').value || 'N/A',
+            referral: document.getElementById('referral').value,
+            questions: document.getElementById('questions').value || 'None'
+        };
 
-            // Send to Zapier webhook
-            fetch('https://hooks.zapier.com/hooks/catch/9405168/2ftxhhl/', {
-                method: 'POST',
-                body: JSON.stringify(Object.fromEntries(formData)),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                mode: 'no-cors'
-            })
-        ])
-        .then(([emailResponse]) => {
-            if (emailResponse.success) {
-                // Redirect to thank you page or Google
-                window.location.href = document.getElementById('redirect-url').value;
-            } else {
-                throw new Error(emailResponse.message);
-            }
+        // Send to Zapier webhook
+        fetch('https://hooks.zapier.com/hooks/catch/9405168/2ftxhhl/', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors'
+        })
+        .then(() => {
+            // Redirect to Google
+            window.location.href = document.getElementById('redirect-url').value;
         })
         .catch(error => {
             console.error('Error:', error);
