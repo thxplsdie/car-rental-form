@@ -265,74 +265,49 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneNumber = document.getElementById('phone').value;
         const fullPhone = countryCode + phoneNumber;
         
-        // Prepare data for both FormSubmit and Zapier
-        const formData = {
-            carType: document.querySelector('input[name="carType"]:checked').value,
-            transmission: document.getElementById('transmission').value,
-            pickupLocation: document.getElementById('pickupLocation').value,
-            pickupDate: document.getElementById('pickupDate').value,
-            pickupTime: new Date(`2000/01/01 ${document.getElementById('pickupTime').value}`).toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            }),
-            returnLocation: document.getElementById('returnLocation').value,
-            returnDate: document.getElementById('returnDate').value,
-            returnTime: new Date(`2000/01/01 ${document.getElementById('returnTime').value}`).toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            }),
-            passengers: document.getElementById('passengers').value,
-            age: document.getElementById('age').value,
-            international: document.getElementById('international').value,
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            phone: fullPhone,
-            zipCode: document.getElementById('zipCode').value,
-            firstVisit: document.getElementById('firstVisit').value,
-            occasion: document.getElementById('occasion').value || 'N/A',
-            referral: document.getElementById('referral').value,
-            questions: document.getElementById('questions').value || 'None'
-        };
+        // Prepare form data
+        const formData = new FormData(form);
+        formData.set('phone', fullPhone); // Update phone with combined value
 
-        // Debug log
-        console.log('Sending to Zapier:', formData);
+        // Show loading state
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
 
-        // Send to Zapier webhook
-        fetch('https://hooks.zapier.com/hooks/catch/9405168/2ftxhhl/', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'no-cors'
-        }).then(response => {
-            console.log('Zapier submission attempted');
-            // Continue with email submission
-            const hiddenPhone = document.createElement('input');
-            hiddenPhone.type = 'hidden';
-            hiddenPhone.name = 'phone';
-            hiddenPhone.value = fullPhone;
-            
-            document.getElementById('phone').removeAttribute('name');
-            document.getElementById('countryCode').removeAttribute('name');
-            
-            form.appendChild(hiddenPhone);
-            form.submit();
-        }).catch(error => {
-            console.error('Error sending to Zapier:', error.message);
-            // Still submit the form to email even if Zapier fails
-            const hiddenPhone = document.createElement('input');
-            hiddenPhone.type = 'hidden';
-            hiddenPhone.name = 'phone';
-            hiddenPhone.value = fullPhone;
-            
-            document.getElementById('phone').removeAttribute('name');
-            document.getElementById('countryCode').removeAttribute('name');
-            
-            form.appendChild(hiddenPhone);
-            form.submit();
+        // Send to both email handler and Zapier
+        Promise.all([
+            // Send to our email handler
+            fetch('send-email.php', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json()),
+
+            // Send to Zapier webhook
+            fetch('https://hooks.zapier.com/hooks/catch/9405168/2ftxhhl/', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: 'no-cors'
+            })
+        ])
+        .then(([emailResponse]) => {
+            if (emailResponse.success) {
+                // Redirect to thank you page or Google
+                window.location.href = document.getElementById('redirect-url').value;
+            } else {
+                throw new Error(emailResponse.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error submitting the form. Please try again.');
+        })
+        .finally(() => {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Inquiry';
         });
     });
 }); 
