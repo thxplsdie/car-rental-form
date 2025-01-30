@@ -89,24 +89,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('summary-return-location').textContent = document.getElementById('returnLocation').value;
         
         // Format pickup datetime
-        const pickupTime = document.getElementById('pickupTime').value; // This is in 24h format
-        const pickupTimeDisplay = new Date(`2000/01/01 ${pickupTime}`).toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-        });
-        document.getElementById('summary-pickup-datetime').textContent = 
-            `${document.getElementById('pickupDate').value} ${pickupTimeDisplay}`;
+        const formatTimeForSummary = (time) => {
+            if (!time) return '';
+            const [hours, minutes] = time.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const hour12 = hour % 12 || 12;
+            return `${hour12}:${minutes} ${ampm}`;
+        };
 
-        // Format return datetime
-        const returnTime = document.getElementById('returnTime').value; // This is in 24h format
-        const returnTimeDisplay = new Date(`2000/01/01 ${returnTime}`).toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-        });
+        const pickupTime = document.getElementById('pickupTime').value;
+        const pickupTimeFormatted = formatTimeForSummary(pickupTime);
+        document.getElementById('summary-pickup-datetime').textContent = 
+            `${document.getElementById('pickupDate').value} ${pickupTimeFormatted}`;
+
+        const returnTime = document.getElementById('returnTime').value;
+        const returnTimeFormatted = formatTimeForSummary(returnTime);
         document.getElementById('summary-return-datetime').textContent = 
-            `${document.getElementById('returnDate').value} ${returnTimeDisplay}`;
+            `${document.getElementById('returnDate').value} ${returnTimeFormatted}`;
 
         // New rental details
         document.getElementById('summary-passengers').textContent = document.getElementById('passengers').value;
@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Format times to AM/PM
         const formatTime = (time) => {
+            if (!time) return '';
             const [hours, minutes] = time.split(':');
             const hour = parseInt(hours);
             const ampm = hour >= 12 ? 'PM' : 'AM';
