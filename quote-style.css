@@ -45,8 +45,6 @@ body {
 }
 
 .booking-container {
-    position: relative;
-    z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
     padding: var(--spacing-xl);
@@ -55,13 +53,18 @@ body {
 
 /* Global CSS for progress bar */
 .clearfix:after,
-.form-container,
+.container,
 .wrapper,
 .arrow-steps,
 .arrow-steps .step {
     display: none;
 }
 
+.container {
+    font-family: 'Lato', sans-serif;
+    width: 1000px;
+    margin: 0 auto;
+}
 
 .wrapper {
     display: table-cell;
@@ -1277,9 +1280,141 @@ input[type="number"] {
     }
 }
 
-/* Minimal fix for navbar visibility - no styling changes */
-div[data-animation="default"] {
-    display: block !important;
+/* Add after the reset styles */
+button, 
+label,
+.car-label,
+.car-label img,
+.car-info,
+.car-details,
+.step-dot,
+.step-title,
+h2, h3, h4, p,
+.car-info p,
+.car-info h4,
+select,
+.transmission-select,
+.edit-step,
+.summary-section,
+.summary-label,
+.summary-value,
+#progress-percentage,
+.progress-text {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-/* Remove all other navbar-related styles */ 
+/* Add cursor styles for interactive elements */
+button,
+select,
+.car-label,
+.edit-step,
+input[type="date"],
+input[type="radio"] + label {
+    cursor: pointer;
+}
+
+/* Add text cursor for input fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+    cursor: text;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 1px;
+}
+
+/* Input with Icon Container */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    left: 14px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    color: var(--primary-green);
+    z-index: 1;
+}
+
+.input-with-icon input,
+.input-with-icon select {
+    padding: 12px 16px 12px 44px;
+    height: 48px;
+    background: white;
+    border: 1px solid #E4E7EC;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    width: 100%;
+    transition: var(--transition-base);
+    color: var(--text-dark);
+}
+
+.input-with-icon .error-message {
+    flex-basis: 100%;
+    margin-top: 4px;
+}
+
+/* Car icon specific styles */
+.car-icon {
+    position: absolute;
+    left: 14px;
+    width: 23px;
+    height: 10px;
+    pointer-events: none;
+    color: var(--primary-green);
+    z-index: 1;
+}
+
+/* Error message positioning */
+.error-message {
+    display: none;
+    color: #FF4D4F;
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 500;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    text-align: left;
+}
+
+/* Add these new styles */
+.iti--separate-dial-code .iti__selected-flag {
+    background-color: transparent !important;
+    padding-left: 12px !important;
+}
+
+.iti--separate-dial-code input {
+    padding-left: 100px !important;
+}
+
+.iti--separate-dial-code .iti__selected-dial-code {
+    padding-left: 12px;
+    color: var(--text-dark);
+} 
