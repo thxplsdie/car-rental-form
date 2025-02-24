@@ -63,12 +63,6 @@ body {
 }
 
 
-.container {
-    font-family: 'Lato', sans-serif;
-    width: 1000px;
-    margin: 0 auto;
-}
-
 .wrapper {
     display: table-cell;
     height: 400px;
